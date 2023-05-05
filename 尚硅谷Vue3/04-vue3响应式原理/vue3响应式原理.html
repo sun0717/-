@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let person = {
+            name: '张三',
+            age: 18
+        }
+
+        let obj = {
+            a: 1,
+            b: 2
+        }
+        //模拟vue2中实现响应式
+        let p = {} // vue2上来先准备一个空对象
+/*         Object.defineProperty(p, 'name', {
+            get() {
+                console.log('有人读取了name属性, 做一些事情');
+                return person.name;
+            },
+            set(value) {
+                console.log('有人修改了name属性, 做一些事情');
+                person.name = value;
+            }
+        });
+        Object.defineProperty(p, 'age', {
+            get() {
+                console.log('有人读取了age属性, 做一些事情');
+                return person.age;
+            },
+            set(value) {
+                console.log('有人修改了age属性, 做一些事情');
+                person.age = value;
+            }
+        }) */
+
+
+        // 模拟vue3中实现响应式
+/*         const p = new Proxy(person, {
+            // get 有人读取p的某个属性时调用
+            get(target, prop) {
+                // 在target对象中找形参prop对应的属性
+                // 用中括号的原因是：prop是形参，如果用点，则是去找名称为prop的属性
+                console.log(`有人读取了p身上的${prop}属性`);
+                return Reflect.get(target, prop);
+            },
+            // set 不仅修改属性时调用，增加属性时也会调用
+            set(target, prop, value) {
+                Reflect.set(target, prop, value);
+                console.log(`有人修改了p身上的${prop}属性,修改后的值为${target[prop]}`);
+            },
+            // deleteProperty 有人删除p的某个属性时调用
+            deleteProperty(target, prop) {
+                console.log(`有人删除了p身上的${prop}属性`);
+                return Reflect.deleteProperty(target, propName);
+            }
+        }) */
+    
+        Object.defineProperty(obj, 'c', {
+            get() {
+                return 3
+            }
+        })
+    </script>
+</body>
+</html>
